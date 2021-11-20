@@ -24,7 +24,9 @@
     <ClCompile Include="Sorting.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="Algorithms.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="DataGenerator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

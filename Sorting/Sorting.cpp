@@ -146,3 +146,137 @@ void countingSort(int arr[], int n) {
 
 
 
+
+
+
+void bubbleSort(int A[], int n)
+{
+	for (int i = 1; i < n; i++)
+	{
+		for (int j = n - 1; j >= i; j--)
+		{
+			if (A[j - 1] > A[j])
+			{
+				swap(A[j - 1], A[j]);
+			}
+		}
+	}
+}
+int partition(int A[], int first, int last)
+{
+	int pivotindex = first;
+	int pivot = A[last];
+	for (int i = first; i <= last - 1; i++)
+	{
+		if (A[i] < pivot)
+		{
+			swap(A[pivotindex], A[i]);
+			pivotindex++;
+		}
+	}
+	swap(A[last], A[pivotindex]);
+	return pivotindex;
+}
+void quickSort(int A[], int first, int last)
+{
+	if (first < last)
+	{
+		int pivotIndex = partition(A, first, last);
+		quickSort(A, first, pivotIndex - 1);
+		quickSort(A, pivotIndex + 1, last);
+	}
+}
+void shakerSort(int A[], int n)
+{
+	int left = 0;
+	int right = n - 1;
+	int k = 0;
+	do
+	{
+		for (int i = left; i < right; i++)
+		{
+			if (A[i] > A[i + 1])
+			{
+				swap(A[i], A[i + 1]);
+				k = i;
+			}
+		}
+		right = k;
+		for (int i = right; i > left; i--)
+		{
+			if (A[i] < A[i - 1])
+			{
+				swap(A[i], A[i - 1]);
+				k = i;
+			}
+		}
+		left = k;
+	} while (left < right);
+}
+
+void bubbleSortCountcomp(int A[], int n, int& count_comp)
+{
+	count_comp = 0;
+	for (int i = 1; ++count_comp && i < n; i++)
+	{
+		for (int j = n - 1; ++count_comp && j >= i; j--)
+		{
+			if (++count_comp && A[j - 1] > A[j])
+			{
+				swap(A[j - 1], A[j]);
+			}
+		}
+	}
+}
+int partitionCountcomp(int A[], int first, int last, int& count_comp)
+{
+	int pivotindex = first;
+	int pivot = A[last];
+	for (int i = first; ++count_comp && i <= last - 1; i++)
+	{
+		if (++count_comp && A[i] < pivot)
+		{
+			swap(A[pivotindex], A[i]);
+			pivotindex++;
+		}
+	}
+	swap(A[last], A[pivotindex]);
+	return pivotindex;
+}
+void quickSortCountcomp(int A[], int first, int last, int& count_comp)
+{
+	if (++count_comp && first < last)
+	{
+		int pivotIndex = partitionCountcomp(A, first, last, count_comp);
+		quickSortCountcomp(A, first, pivotIndex - 1, count_comp);
+		quickSortCountcomp(A, pivotIndex + 1, last, count_comp);
+	}
+}
+void shakerSortCountcomp(int A[], int n, int& count_comp)
+{
+	count_comp = 0;
+	int left = 0;
+	int right = n - 1;
+	int k = 0;
+	do
+	{
+		for (int i = left; ++count_comp && i < right; i++)
+		{
+			if (++count_comp && A[i] > A[i + 1])
+			{
+				swap(A[i], A[i + 1]);
+				k = i;
+			}
+		}
+		right = k;
+		for (int i = right; ++count_comp && i > left; i--)
+		{
+			if (++count_comp && A[i] < A[i - 1])
+			{
+				swap(A[i], A[i - 1]);
+				k = i;
+			}
+		}
+		left = k;
+	} while (++count_comp && left <= right);
+}

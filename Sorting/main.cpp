@@ -23,59 +23,59 @@ int main() {
         cout << n << endl;
         int* a = new int[n];
 
-        cout << "Selection sort" << endl;
+        cout << "\nSelection sort" << endl;
         GenerateData(a, n, x);
         clock_t start, end;
         start = clock();
         selectionSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
         selectionSort_countComp(a,n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
-        cout << "Insertion sort" << endl;
+        cout << "\nInsertion sort" << endl;
         GenerateData(a, n, x);
  
         start = clock();
         insertionSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
         insertionSort_countComp(a, n,count_comp);
         cout << "comparision: " << count_comp << endl;
 
-        cout << "Bubble sort" << endl;
+        cout << "\nBubble sort" << endl;
         GenerateData(a, n, x);
 
         start = clock();
         bubbleSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
         bubbleSortCountcomp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
-        cout << "Heap sort" << endl;
+        cout << "\nHeap sort" << endl;
         GenerateData(a, n, x);
 
         start = clock();
         heapSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
-        //heapSort_CountComp(a, n, count_comp);
+        heapSort_CountComp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
-        cout << "Merge sort" << endl;
+        cout << "\nMerge sort" << endl;
         GenerateData(a, n, x);
 
         start = clock();
@@ -89,7 +89,7 @@ int main() {
         cout << "comparision: " << count_comp << endl;
 
 
-        cout << "Quick sort" << endl;
+        cout << "\nQuick sort" << endl;
         GenerateData(a, n, x);
 
         start = clock();
@@ -103,53 +103,53 @@ int main() {
         cout << "comparision: " << count_comp << endl;
 
 
-        cout << "Radix sort" << endl;
+        cout << "\nRadix sort" << endl;
         GenerateData(a, n, x);
 
         start = clock();
         //radixSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
         //radixSort_comp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
-        cout << "Shaker sort" << endl;
+        cout << "\nShaker sort" << endl;
         GenerateData(a, n, x);
 
         start = clock();
         //shakerSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
         //shakerSortCountcomp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
-        cout << "Shell sort" << endl;
+        cout << "\nShell sort" << endl;
         GenerateData(a, n, x);
    
         start = clock();
         shellSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
         shellSort_countComp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
-        cout << "Counting sort" << endl;
+        cout << "\nCounting sort" << endl;
         GenerateData(a, n, x);
 
         start = clock();
         countingSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
         countingSort_CountComp(a, n, count_comp);

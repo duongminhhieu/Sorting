@@ -94,7 +94,7 @@ void heapify_CountComp(int* arr, int n, int i, unsigned long long int& count_com
 	int left = 2 * i + 1; // chỉ số bên trái 
 	int right = 2 * i + 2; // chỉ số bên phải
 
-	if ((++count_comp && left) < n && (++count_comp && arr[largest] < arr[left])) {
+	if ((++count_comp && left < n) && (++count_comp && arr[largest] < arr[left])) {
 		largest = left;
 	}
 

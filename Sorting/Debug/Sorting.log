@@ -1,0 +1,8 @@
+﻿  DataGenerator.cpp
+  Sorting.cpp
+G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Sorting\Sorting.cpp(14,16): warning C4018: '<': signed/unsigned mismatch
+G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Sorting\Sorting.cpp(18,21): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Sorting\main.cpp(16,20): warning C4101: 'count': unreferenced local variable
+  Generating Code...
+  Sorting.vcxproj -> G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Debug\Sorting.exe

@@ -26,7 +26,7 @@ void selectionSort(int arr[], unsigned int n)
 
 
 
-void selectionSort_countComp(int arr[], int n, unsigned long int& count_comp)
+void selectionSort_countComp(int arr[], int n, unsigned long long int& count_comp)
 {
 
 	count_comp = 0;
@@ -111,7 +111,6 @@ void heapify_CountComp(int* arr, int n, int i, unsigned long long int& count_com
 
 void heapSort_CountComp(int* arr, int n, unsigned long long int& count_comp) {
 
-	count_comp = 0;
 
 	// Duyệt từ node số gần cuối về 0
 	for (int i = n / 2 - 1;++count_comp && i >= 0; i--)
@@ -282,7 +281,7 @@ void shakerSort(int A[], int n)
 	} while (left < right);
 }
 
-void bubbleSortCountcomp(int A[], int n, int& count_comp)
+void bubbleSortCountcomp(int A[], int n,unsigned long long int& count_comp)
 {
 	count_comp = 0;
 	for (int i = 1; ++count_comp && i < n; i++)
@@ -296,7 +295,7 @@ void bubbleSortCountcomp(int A[], int n, int& count_comp)
 		}
 	}
 }
-int partitionCountcomp(int A[], int first, int last, int& count_comp)
+int partitionCountcomp(int A[], int first, int last,unsigned long long int& count_comp)
 {
 	int pivotindex = first;
 	int pivot = A[last];
@@ -311,7 +310,7 @@ int partitionCountcomp(int A[], int first, int last, int& count_comp)
 	swap(A[last], A[pivotindex]);
 	return pivotindex;
 }
-void quickSortCountcomp(int A[], int first, int last, int& count_comp)
+void quickSortCountcomp(int A[], int first, int last,unsigned long long int& count_comp)
 {
 	if (++count_comp && first < last)
 	{
@@ -320,7 +319,7 @@ void quickSortCountcomp(int A[], int first, int last, int& count_comp)
 		quickSortCountcomp(A, pivotIndex + 1, last, count_comp);
 	}
 }
-void shakerSortCountcomp(int A[], int n, int& count_comp)
+void shakerSortCountcomp(int A[], int n,unsigned long long int& count_comp)
 {
 	count_comp = 0;
 	int left = 0;
@@ -477,19 +476,17 @@ void shellSort(int arr[], int n)
 
 
 //Insertion Sort - Comparision
-void insertionSort_countComp(int arr[], int n, int& count_comp)
+void insertionSort_countComp(int arr[], int n,unsigned long long int& count_comp)
 {
 	count_comp = 0;
 	int i, key, j;
-	for (i = 1; i < n; i++)
+	for (i = 1; ++count_comp && i < n; i++)
 	{
-		++count_comp;
 		key = arr[i];
 		j = i - 1;
 
-		while (j >= 0 && arr[j] > key)
+		while ((++count_comp && j >= 0) &&(++count_comp && arr[j] > key))
 		{
-			count_comp += 2;
 			arr[j + 1] = arr[j];
 			j = j - 1;
 		}
@@ -501,7 +498,7 @@ void insertionSort_countComp(int arr[], int n, int& count_comp)
 
 // Merge Sort - Comparision
 // Gop 2 mang con arr[l...m] va arr[m+1..r]
-void merge_countComp(int arr[], int l, int m, int r, int& count_comp)
+void merge_countComp(int arr[], int l, int m, int r,unsigned long long int& count_comp)
 {
 	int i, j, k;
 	int n1 = m - l + 1;
@@ -512,18 +509,17 @@ void merge_countComp(int arr[], int l, int m, int r, int& count_comp)
 	int* R = new int[n2];
 
 	// Copy du lieu sang mang tam
-	for (i = 0; i < n1; i++)
+	for (i = 0; ++count_comp && i < n1; i++)
 		L[i] = arr[l + i];
-	for (j = 0; j < n2; j++)
+	for (j = 0; ++count_comp && j < n2; j++)
 		R[j] = arr[m + 1 + j];
 
 	// Gop 2 mang tam vao amng arr
 	i = 0; // Khoi tao chi so bat dau cua mang con dau tien
 	j = 0; // Khoi tao chi so bat dau cua mang con thu hai
 	k = l; // Khoi tao chi so bat dau cua mang luu ket qua
-	while (i < n1 && j < n2)
+	while ((++count_comp && i < n1) && (++count_comp && j < n2))
 	{
-		count_comp += 2;
 		if (++count_comp && L[i] <= R[j])
 		{
 			arr[k] = L[i];
@@ -555,9 +551,9 @@ void merge_countComp(int arr[], int l, int m, int r, int& count_comp)
 }
 
 // l la chi so trai va r la chi so phai cua mang can duoc sap xep
-void mergeSort_countComp(int arr[], int l, int r, int& count_comp)
+void mergeSort_countComp(int arr[], int l, int r,unsigned long long int& count_comp)
 {
-	if (++count_comp&& l < r)
+	if (++count_comp && l < r)
 	{
 		// Tuong tu (l+r)/2, nhung cach nay tranh tran so khi l va r lon
 		int m = l + (r - l) / 2;
@@ -573,20 +569,18 @@ void mergeSort_countComp(int arr[], int l, int r, int& count_comp)
 //-----------------------------------------------------------------------
 
 // Shell Sort - Comparision
-void shellSort_countComp(int arr[], int n, int& count_comp)
+void shellSort_countComp(int arr[], int n,unsigned long long int& count_comp)
 {
 	count_comp = 0;
 	// Start with a big gap, then reduce the gap
-	for (int gap = n / 2; gap > 0; gap /= 2)
+	for (int gap = n / 2; ++count_comp && gap > 0; gap /= 2)
 	{
-		++count_comp;
 		// Do a gapped insertion sort for this gap size.
 		// The first gap elements a[0..gap-1] are already in gapped order
 		// keep adding one more element until the entire array is
 		// gap sorted
-		for (int i = gap; i < n; i += 1)
+		for (int i = gap; ++count_comp && i < n; i += 1)
 		{
-			++count_comp;
 			// add a[i] to the elements that have been gap sorted
 			// save a[i] in temp and make a hole at position i
 			int temp = arr[i];
@@ -594,9 +588,8 @@ void shellSort_countComp(int arr[], int n, int& count_comp)
 			// shift earlier gap-sorted elements up until the correct
 			// location for a[i] is found
 			int j;
-			for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+			for (j = i;( ++count_comp && j >= gap) && (++count_comp && arr[j - gap] > temp); j -= gap)
 			{
-				count_comp += 2;
 				arr[j] = arr[j - gap];
 			}
 
@@ -609,3 +602,48 @@ void shellSort_countComp(int arr[], int n, int& count_comp)
 //-------------------------------------------------
 
 //-------------------------------------------------
+void radixSort(int* a, int n)
+{
+	int b[10], m = a[0], kn = 1;
+
+	for (int i = 0; i < n; i++)
+		if (a[i] > m)
+			m = a[i];
+
+	while (m / kn > 0)
+	{
+		int bucket[10] = { 0 };
+		for (int i = 0; i < n; i++)
+			bucket[a[i] / kn % 10]++;
+		for (int i = 1; i < 10; i++)
+			bucket[i] += bucket[i - 1];
+		for (int i = n - 1; i >= 0; i--)
+			b[--bucket[a[i] / kn % 10]] = a[i];
+		for (int i = 0; i < n; i++)
+			a[i] = b[i];
+		kn *= 10;
+	}
+}
+
+
+void radixSort_comp(int* a, int n, unsigned long long int& count_comp) {
+	int b[10], m = a[0], kn = 1;
+
+	for (int i = 0;++count_comp && i < n; i++)
+		if ( ++ count_comp && a[i] > m)
+			m = a[i];
+
+	while (++ count_comp && m / kn > 0)
+	{
+		int bucket[10] = { 0 };
+		for (int i = 0; ++count_comp && i < n; i++)
+			bucket[a[i] / kn % 10]++;
+		for (int i = 1; ++count_comp && i < 10; i++)
+			bucket[i] += bucket[i - 1];
+		for (int i = n - 1; ++count_comp && i >= 0; i--)
+			b[--bucket[a[i] / kn % 10]] = a[i];
+		for (int i = 0; ++count_comp && i < n; i++)
+			a[i] = b[i];
+		kn *= 10;
+	}
+}

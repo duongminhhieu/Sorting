@@ -12,8 +12,8 @@ void printArray(int array[], int size) {
 
 
 int main() {
-
-    int count_comp = 0;
+    double time;
+    unsigned long long int count_comp = 0;
     int x = 1;
     int n = 10000;
     int b[6] = { 10000,20000,50000,100000,300000,500000 };
@@ -27,35 +27,35 @@ int main() {
         GenerateData(a, n, x);
         clock_t start, end;
         start = clock();
-        //ham sort
+        selectionSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        selectionSort_countComp(a,n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
         cout << "Insertion sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+ 
         start = clock();
-        //ham sort
+        insertionSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        insertionSort_countComp(a, n,count_comp);
         cout << "comparision: " << count_comp << endl;
 
         cout << "Bubble sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+
         start = clock();
         bubbleSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
@@ -64,95 +64,99 @@ int main() {
 
         cout << "Heap sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+
         start = clock();
-        //ham sort
+        heapSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        //heapSort_CountComp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
         cout << "Merge sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+
         start = clock();
-        //ham sort
+        mergeSort(a, 0, n - 1);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
-        cout << "time: " << time * 1000;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
+        cout << "time: " << time * 1000 << endl ;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        mergeSort_countComp(a, 0, n - 1, count_comp);
         cout << "comparision: " << count_comp << endl;
 
 
         cout << "Quick sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+
         start = clock();
-        //ham sort
+        //quickSort(a, 0, n - 1);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        //quickSortCountcomp(a, 0, n - 1, count_comp);
         cout << "comparision: " << count_comp << endl;
 
 
         cout << "Radix sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+
         start = clock();
-        //ham sort
+        //radixSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        //radixSort_comp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
         cout << "Shaker sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+
         start = clock();
-        //ham sort
+        //shakerSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        //shakerSortCountcomp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
         cout << "Shell sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+   
         start = clock();
-        //ham sort
+        shellSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        shellSort_countComp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
         cout << "Counting sort" << endl;
         GenerateData(a, n, x);
-        clock_t start, end;
+
         start = clock();
-        //ham sort
+        countingSort(a, n);
         end = clock();
-        double time = (double)(end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //ham sort
+        countingSort_CountComp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
     }
+
+
+    cout << endl << endl;
+    system("pause");
 }

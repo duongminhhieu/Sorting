@@ -21,3 +21,9 @@ void bubbleSortCountcomp(int A[], int n, int& count_comp);
 int partitionCountcomp(int A[], int first, int last, int& count_comp);
 void quickSortCountcomp(int A[], int first, int last, int& count_comp);
 void shakerSortCountcomp(int A[], int n, int& count_comp);
+
+
+void insertionSort(int arr[], int n);
+void merge(int arr[], int l, int m, int r);
+void mergeSort(int arr[], int l, int r);
+void shellSort(int arr[], int n);

@@ -348,3 +348,130 @@ void shakerSortCountcomp(int A[], int n, int& count_comp)
 		left = k;
 	} while (++count_comp && left <= right);
 }
+
+
+
+
+
+
+// Insertion Sort
+void insertionSort(int arr[], int n) //no comparasion
+{
+	int i, key, j;
+	for (i = 1; i < n; i++)
+	{
+		key = arr[i];
+		j = i - 1;
+
+		while (j >= 0 && arr[j] > key)
+		{
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+	}
+}
+
+//-----------------------------------------------------------------------
+
+// Merge Sort
+// Gop 2 mang con arr[l...m] va arr[m+1..r]
+void merge(int arr[], int l, int m, int r)
+{
+	int i, j, k;
+	int n1 = m - l + 1;
+	int n2 = r - m;
+
+	//Tao cac mang tam
+	int* L = new int[n1];
+	int* R = new int[n2];
+
+	// Copy du lieu sang mang tam
+	for (i = 0; i < n1; i++)
+		L[i] = arr[l + i];
+	for (j = 0; j < n2; j++)
+		R[j] = arr[m + 1 + j];
+
+	// Gop 2 mang tam vao amng arr
+	i = 0; // Khoi tao chi so bat dau cua mang con dau tien
+	j = 0; // Khoi tao chi so bat dau cua mang con thu hai
+	k = l; // Khoi tao chi so bat dau cua mang luu ket qua
+	while (i < n1 && j < n2)
+	{
+		if (L[i] <= R[j])
+		{
+			arr[k] = L[i];
+			i++;
+		}
+		else
+		{
+			arr[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+
+	// Copy cac phan tu con lai cua mang L vao arr neu co
+	while (i < n1)
+	{
+		arr[k] = L[i];
+		i++;
+		k++;
+	}
+
+	// Copy cac phan tu con lai vao mang R vao arr neu co
+	while (j < n2)
+	{
+		arr[k] = R[j];
+		j++;
+		k++;
+	}
+}
+
+// l la chi so trai va r la chi so phai cua mang can duoc sap xep
+void mergeSort(int arr[], int l, int r)
+{
+	if (l < r)
+	{
+		// Tuong tu (l+r)/2, nhung cach nay tranh tran so khi l va r lon
+		int m = l + (r - l) / 2;
+
+		// Goi ham de quy tiep tuc chia doi tung nua mang
+		mergeSort(arr, l, m);
+		mergeSort(arr, m + 1, r);
+
+		merge(arr, l, m, r);
+	}
+}
+
+//-----------------------------------------------------------------------
+
+// Shell Sort
+void shellSort(int arr[], int n)
+{
+	// Start with a big gap, then reduce the gap
+	for (int gap = n / 2; gap > 0; gap /= 2)
+	{
+		// Do a gapped insertion sort for this gap size.
+		// The first gap elements a[0..gap-1] are already in gapped order
+		// keep adding one more element until the entire array is
+		// gap sorted
+		for (int i = gap; i < n; i += 1)
+		{
+			// add a[i] to the elements that have been gap sorted
+			// save a[i] in temp and make a hole at position i
+			int temp = arr[i];
+
+			// shift earlier gap-sorted elements up until the correct
+			// location for a[i] is found
+			int j;
+			for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+				arr[j] = arr[j - gap];
+
+			//  put temp (the original a[i]) in its correct location
+			arr[j] = temp;
+		}
+	}
+}
+
+//-------------------------------------------------

@@ -1,4 +1,6 @@
-#include "Header.h"
+#include "Algorithms.h"
+#include "Command.h"
+#include "DataGenerator.h"
 
 
 // Function to print an array

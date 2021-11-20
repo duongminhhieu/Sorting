@@ -29,6 +29,11 @@ void shakerSortCountcomp(int A[], int n, int& count_comp);
 
 
 void insertionSort(int arr[], int n);
+void insertionSort_countComp(int arr[], int n, int& count_comp);
 void merge(int arr[], int l, int m, int r);
 void mergeSort(int arr[], int l, int r);
+void merge_countComp(int arr[], int l, int m, int r, int& count_comp);
+void mergeSort_countComp(int arr[], int l, int r, int& count_comp);
 void shellSort(int arr[], int n);
+void shellSort_countComp(int arr[], int n, int& count_comp);
+

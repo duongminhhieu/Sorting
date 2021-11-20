@@ -3,10 +3,8 @@
 
 
 
-void selectionSort(int arr[], unsigned int n, double& running_time)
+void selectionSort(int arr[], unsigned int n)
 {
-	clock_t start, end;
-	start = clock();
 
 	int i, j, min_idx;
 
@@ -23,8 +21,6 @@ void selectionSort(int arr[], unsigned int n, double& running_time)
 		swap(arr[min_idx], arr[i]);
 	}
 
-	end = clock();
-	running_time = ((double)(end - start)) / CLOCKS_PER_SEC;
 }
 
 
@@ -52,9 +48,6 @@ void selectionSort_countComp(int arr[], int n, unsigned long int& count_comp)
 
 
 
-
-
-
 // Xây dựng hàm Heap chất đống 
 // Hàm có giá trị từ node i = largest của nó trờ xuống
 void heapify(int* arr, int n, int i) {
@@ -78,10 +71,7 @@ void heapify(int* arr, int n, int i) {
 }
 
 
-void heapSort(int* arr, int n, double& running_time) {
-
-	clock_t start, end;
-	start = clock();
+void heapSort(int* arr, int n) {
 
 	// Duyệt từ node số gần cuối về 0
 	for (int i = n / 2 - 1; i >= 0; i--)
@@ -96,10 +86,46 @@ void heapSort(int* arr, int n, double& running_time) {
 		heapify(arr, i, 0);
 	}
 
-	end = clock();
-	running_time = ((double)(end - start)) / CLOCKS_PER_SEC;
 }
 
+void heapify_CountComp(int* arr, int n, int i, unsigned long long int& count_comp) {
+	int largest = i; // phần tử đang xét
+	int left = 2 * i + 1; // chỉ số bên trái 
+	int right = 2 * i + 2; // chỉ số bên phải
+
+	if ((++count_comp && left) < n && (++count_comp && arr[largest] < arr[left])) {
+		largest = left;
+	}
+
+	if ((++ count_comp && right < n) && ( ++count_comp && arr[largest] < arr[right])) {
+		largest = right;
+	}
+
+	if ( ++count_comp && largest != i) {
+		swap(arr[i], arr[largest]);
+		heapify_CountComp(arr, n, largest,count_comp);
+	}
+
+}
+
+void heapSort_CountComp(int* arr, int n, unsigned long long int& count_comp) {
+
+	count_comp = 0;
+
+	// Duyệt từ node số gần cuối về 0
+	for (int i = n / 2 - 1;++count_comp && i >= 0; i--)
+	{
+		heapify_CountComp(arr, n, i,count_comp);
+	}
+
+	// Duyệt từ cuối về đầu để lấy các phần tử chỉ số 0 về cuối
+	for (int i = n - 1; ++ count_comp && i >= 0; i--)
+	{
+		swap(arr[0], arr[i]);
+		heapify_CountComp(arr, i, 0, count_comp);
+	}
+
+}
 
 
 void countingSort(int arr[], int n) {
@@ -144,7 +170,48 @@ void countingSort(int arr[], int n) {
 }
 
 
+void countingSort_CountComp(int arr[], int n, unsigned long long int& count_comp) {
 
+	count_comp = 0;
+
+	int* output = new int[n]; // The output will have sorted input array
+	int max = arr[0];
+	int min = arr[0];
+
+	int i;
+	for (i = 1;++count_comp && i < n; i++)
+	{
+		if (++count_comp && arr[i] > max)
+			max = arr[i]; // Maximum value in array
+		else if (++count_comp && arr[i] < min)
+			min = arr[i]; // Minimum value in array
+	}
+
+	int k = max - min + 1; // Size of count array
+
+	int* count_array = new int[k]; // Create a count_array to store count of each individual input value
+	for (i = 0; ++ count_comp && i < k; i++)
+		count_array[i] = 0;
+
+	for (i = 0; ++ count_comp && i < n; i++)
+		count_array[arr[i] - min]++; // Store count of each individual input value
+
+	/* Change count_array so that count_array now contains actual
+	 position of input values in output array */
+	for (i = 1; ++count_comp && i < k; i++)
+		count_array[i] += count_array[i - 1];
+
+	// Populate output array using count_array and input array
+	for (i = 0;++count_comp && i < n; i++)
+	{
+		output[count_array[arr[i] - min] - 1] = arr[i];
+		count_array[arr[i] - min]--;
+	}
+
+	for (i = 0; ++ count_comp && i < n; i++)
+		arr[i] = output[i]; // Copy the output array to input, so that input now contains sorted values
+
+}
 
 
 

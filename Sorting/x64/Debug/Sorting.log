@@ -1,2 +1,4 @@
-﻿  main.cpp
+﻿  Command.cpp
+D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\Sorting\Command.cpp(98): warning C4715: 'chooseCommandType': not all control paths return a value
+D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\Sorting\Command.cpp(262): warning C4715: 'Command_1': not all control paths return a value
   Sorting.vcxproj -> D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\x64\Debug\Sorting.exe

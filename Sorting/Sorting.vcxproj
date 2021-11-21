@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Command.cpp" />
     <ClCompile Include="DataGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sorting.cpp" />

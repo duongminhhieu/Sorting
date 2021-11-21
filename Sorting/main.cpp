@@ -14,7 +14,7 @@ void printArray(int array[], int size) {
 }
 
 
-int main() {
+/*int main() {
     double time;
     unsigned long long int count_comp = 0;
     int x = 1;
@@ -161,6 +161,12 @@ int main() {
 
 
     cout << endl << endl;
+    system("pause");
+}*/
+
+int main(int argc, char* argv[])
+{
+    Command_1(argv);
     system("pause");
 }
 

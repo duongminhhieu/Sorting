@@ -166,7 +166,7 @@ void printArray(int array[], int size) {
 
 int main(int argc, char* argv[])
 {
-    Command_1(argv);
+    chooseCommandType(argc, argv);
     system("pause");
 }
 

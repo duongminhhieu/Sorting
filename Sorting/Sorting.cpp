@@ -231,6 +231,11 @@ void bubbleSort(int A[], int n)
 }
 int partition(int A[], int first, int last)
 {
+	//Chon 1 so random tu first den last
+	srand(time(NULL));
+	int random = first + rand() % (last - first);
+	//doi vi tri random cho phan tu cuoi cung va lay phan tu do lam pivot
+	swap(A[last], A[random]);
 	int pivotindex = first;
 	int pivot = A[last];
 	for (int i = first; i <= last - 1; i++)
@@ -297,6 +302,11 @@ void bubbleSortCountcomp(int A[], int n,unsigned long long int& count_comp)
 }
 int partitionCountcomp(int A[], int first, int last,unsigned long long int& count_comp)
 {
+	//Chon 1 so random tu first den last
+	srand(time(NULL));
+	int random = first + rand() % (last - first);
+	//doi vi tri random cho phan tu cuoi cung va lay phan tu do lam pivot
+	swap(A[last], A[random]);
 	int pivotindex = first;
 	int pivot = A[last];
 	for (int i = first; ++count_comp && i <= last - 1; i++)
@@ -345,7 +355,7 @@ void shakerSortCountcomp(int A[], int n,unsigned long long int& count_comp)
 			}
 		}
 		left = k;
-	} while (++count_comp && left <= right);
+	} while (++count_comp && left < right);
 }
 
 

@@ -1,3 +1,6 @@
+#include<iostream>
+#include<stdio.h>
+#include<time.h>
 #include "Algorithms.h"
 #include "Command.h"
 #include "DataGenerator.h"
@@ -93,13 +96,13 @@ int main() {
         GenerateData(a, n, x);
 
         start = clock();
-        //quickSort(a, 0, n - 1);
+        quickSort(a, 0, n - 1);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000;
         GenerateData(a, n, x);
         count_comp = 0;
-        //quickSortCountcomp(a, 0, n - 1, count_comp);
+        quickSortCountcomp(a, 0, n - 1, count_comp);
         cout << "comparision: " << count_comp << endl;
 
 
@@ -120,13 +123,13 @@ int main() {
         GenerateData(a, n, x);
 
         start = clock();
-        //shakerSort(a, n);
+        shakerSort(a, n);
         end = clock();
         time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "time: " << time * 1000 << endl;
         GenerateData(a, n, x);
         count_comp = 0;
-        //shakerSortCountcomp(a, n, count_comp);
+        shakerSortCountcomp(a, n, count_comp);
         cout << "comparision: " << count_comp << endl;
 
         cout << "\nShell sort" << endl;
@@ -160,3 +163,5 @@ int main() {
     cout << endl << endl;
     system("pause");
 }
+
+

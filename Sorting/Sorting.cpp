@@ -657,3 +657,57 @@ void radixSort_comp(int* a, int n, unsigned long long int& count_comp) {
 		kn *= 10;
 	}
 }
+
+//-------------------------------------------------
+
+//-------------------------------------------------
+void flashSort(int a[], int n)
+{
+	int min = a[0];
+	int max = 0;
+	int m = int(0.45 * n);
+	int* l = new int[m];
+	for (int i = 0; i < m; i++)
+		l[i] = 0;
+	for (int i = 1; i < n; i++)
+	{
+		if (a[i] < min)
+			min = a[i];
+		if (a[i] > max)
+			max = a[i];
+	}
+
+	double c1 = (double)(m - 1) / (max - min);
+	for (int i = 0; i < n; i++)
+	{
+		int k = int(c1 * (a[i] - min));
+		l[k]+=1;
+	}
+	for (int i = 1; i < m; i++)
+		l[i] += l[i - 1];
+
+	int nmove = 0;
+	int j = 0;
+	int k = m - 1;
+	int t = 0;
+	int flash;
+	while (nmove < n - 1)
+	{
+		while (j > l[k] - 1)
+		{
+			j++;
+			k = int(c1 * (a[j] - min));
+		}
+		flash = a[j];
+		if (k < 0) break;
+		while (j != l[k])
+		{
+			k = int(c1 * (flash - min));
+			int hold = a[t = --l[k]];
+			a[t] = flash;
+			flash = hold;
+			++nmove;
+		}
+	}
+	insertionSort(a, n);
+}

@@ -1,8 +1,4 @@
-﻿  DataGenerator.cpp
-  Sorting.cpp
-G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Sorting\Sorting.cpp(14,16): warning C4018: '<': signed/unsigned mismatch
-G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Sorting\Sorting.cpp(18,21): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Sorting\main.cpp(16,20): warning C4101: 'count': unreferenced local variable
-  Generating Code...
-  Sorting.vcxproj -> G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\20120473\Debug\Sorting.exe
+﻿  main.cpp
+G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\Sorting_off\Sorting\Sorting\main.cpp(18,26): warning C4018: '<': signed/unsigned mismatch
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(1075,5): error MSB6006: "link.exe" exited with code 1168.
+LINK : fatal error LNK1168: cannot open G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\Sorting_off\Sorting\Debug\Sorting.exe for writing

@@ -219,7 +219,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		radixSort_comp(a, n, count_comp);
+		radixSort_countComp(a, n, count_comp);
 		break;
 
 	case 7:
@@ -372,7 +372,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		radixSort_comp(a, n, count_comp);
+		radixSort_countComp(a, n, count_comp);
 		break;
 
 	case 7:
@@ -586,7 +586,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			radixSort_comp(a, size, count_comp[i]);
+			radixSort_countComp(a, size, count_comp[i]);
 		}
 		break;
 

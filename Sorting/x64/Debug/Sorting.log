@@ -1,10 +1,2 @@
-<<<<<<< HEAD
 ﻿  main.cpp
   Sorting.vcxproj -> G:\Tài liệu\ĐẠI HỌC\Năm 2\Cấu trúc dữ liệu và giải thuật\THuc Hnah\Lab3\Sorting_off\Sorting\x64\Debug\Sorting.exe
-=======
-﻿  Command.cpp
-D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\Sorting\Command.cpp(115): warning C4715: 'chooseCommandType': not all control paths return a value
-D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\Sorting\Command.cpp(273): warning C4715: 'Command_1': not all control paths return a value
-D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\Sorting\Command.cpp(426): warning C4715: 'Command_2': not all control paths return a value
-  Sorting.vcxproj -> D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\x64\Debug\Sorting.exe
->>>>>>> 4bef22f7a4494ada08cb85082d191f6462bc8dd4

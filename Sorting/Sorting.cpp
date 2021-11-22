@@ -612,50 +612,94 @@ void shellSort_countComp(int arr[], int n,unsigned long long int& count_comp)
 //-------------------------------------------------
 
 //-------------------------------------------------
-void radixSort(int* a, int n)
-{
-	int b[10], m = a[0], kn = 1;
 
-	for (int i = 0; i < n; i++)
-		if (a[i] > m)
-			m = a[i];
-
-	while (m / kn > 0)
-	{
-		int bucket[10] = { 0 };
-		for (int i = 0; i < n; i++)
-			bucket[a[i] / kn % 10]++;
-		for (int i = 1; i < 10; i++)
-			bucket[i] += bucket[i - 1];
-		for (int i = n - 1; i >= 0; i--)
-			b[--bucket[a[i] / kn % 10]] = a[i];
-		for (int i = 0; i < n; i++)
-			a[i] = b[i];
-		kn *= 10;
-	}
+// Function to get the largest element from an array	
+int getMax(int array[], int n) {
+	int max = array[0];
+	for (int i = 1; i < n; i++)
+		if (array[i] > max)
+			max = array[i];
+	return max;
 }
 
+// Using counting sort to sort the elements in the basis of significant places
+void countSort(int array[], int size, int place) {
+	const int max = 10;
+	int* output = new int[size];
+	int* count = new int[max];
 
-void radixSort_comp(int* a, int n, unsigned long long int& count_comp) {
-	int b[10], m = a[0], kn = 1;
+	for (int i = 0; i < max; ++i)
+		count[i] = 0;
 
-	for (int i = 0;++count_comp && i < n; i++)
-		if ( ++ count_comp && a[i] > m)
-			m = a[i];
+	// Calculate count of elements
+	for (int i = 0; i < size; i++)
+		count[(array[i] / place) % 10]++;
 
-	while (++ count_comp && m / kn > 0)
-	{
-		int bucket[10] = { 0 };
-		for (int i = 0; ++count_comp && i < n; i++)
-			bucket[a[i] / kn % 10]++;
-		for (int i = 1; ++count_comp && i < 10; i++)
-			bucket[i] += bucket[i - 1];
-		for (int i = n - 1; ++count_comp && i >= 0; i--)
-			b[--bucket[a[i] / kn % 10]] = a[i];
-		for (int i = 0; ++count_comp && i < n; i++)
-			a[i] = b[i];
-		kn *= 10;
+	// Calculate cumulative count
+	for (int i = 1; i < max; i++)
+		count[i] += count[i - 1];
+
+	// Place the elements in sorted order
+	for (int i = size - 1; i >= 0; i--) {
+		output[count[(array[i] / place) % 10] - 1] = array[i];
+		count[(array[i] / place) % 10]--;
 	}
+
+	for (int i = 0; i < size; i++)
+		array[i] = output[i];
+}
+
+void radixSort(int array[], int size) {
+	// Get maximum element
+	int max = getMax(array, size);
+
+	// Apply counting sort to sort elements based on place value.
+	for (int place = 1; max / place > 0; place *= 10)
+		countSort(array, size, place);
+}
+
+int getMax_countComp(int array[], int n, unsigned long long int& count_comp) {
+	int max = array[0];
+	for (int i = 1;++count_comp && i < n; i++)
+		if ( ++count_comp && array[i] > max)
+			max = array[i];
+	return max;
+}
+
+void countSort_countComp(int array[], int size, int place, unsigned long long int& count_comp) {
+	const int max = 10;
+	int* output = new int[size];
+	int* count = new int[max];
+
+	for (int i = 0;++count_comp && i < max; ++i)
+		count[i] = 0;
+
+	// Calculate count of elements
+	for (int i = 0;++count_comp && i < size; i++)
+		count[(array[i] / place) % 10]++;
+
+	// Calculate cumulative count
+	for (int i = 1;++count_comp && i < max; i++)
+		count[i] += count[i - 1];
+
+	// Place the elements in sorted order
+	for (int i = size - 1;++count_comp && i >= 0; i--) {
+		output[count[(array[i] / place) % 10] - 1] = array[i];
+		count[(array[i] / place) % 10]--;
+	}
+
+	for (int i = 0;++count_comp && i < size; i++)
+		array[i] = output[i];
+}
+
+void radixSort_countComp(int array[], int size, unsigned long long int& count_comp) {
+	// Get maximum element
+	count_comp = 0;
+	int max = getMax_countComp(array, size,count_comp);
+
+	// Apply counting sort to sort elements based on place value.
+	for (int place = 1;++count_comp && max / place > 0; place *= 10)
+		countSort_countComp(array, size, place,count_comp);
 }
 
 //-------------------------------------------------
@@ -711,3 +755,68 @@ void flashSort(int a[], int n)
 	}
 	insertionSort(a, n);
 }
+
+void flashSort_countComp(int a[], int n, unsigned long long int& count_comp)
+{
+	count_comp = 0;
+	int min = a[0];
+	int max = 0;
+	int m = int(0.45 * n);
+	int* l = new int[m];
+	for (int i = 0;++count_comp && i < m; i++)
+		l[i] = 0;
+	for (int i = 1; ++count_comp && i < n; i++)
+	{
+		if (++count_comp && a[i] < min)
+			min = a[i];
+		if (++count_comp && a[i] > max)
+			max = a[i];
+	}
+
+	double c1 = (double)(m - 1) / (max - min);
+	for (int i = 0; ++count_comp && i < n; i++)
+	{
+		int k = int(c1 * (a[i] - min));
+		l[k] += 1;
+	}
+	for (int i = 1; ++count_comp && i < m; i++)
+		l[i] += l[i - 1];
+
+	int nmove = 0;
+	int j = 0;
+	int k = m - 1;
+	int t = 0;
+	int flash;
+	while (++count_comp && nmove < n - 1)
+	{
+		while (++count_comp && j > l[k] - 1)
+		{
+			j++;
+			k = int(c1 * (a[j] - min));
+		}
+		flash = a[j];
+		if (++count_comp && k < 0) break;
+		while (++count_comp && j != l[k])
+		{
+			k = int(c1 * (flash - min));
+			int hold = a[t = --l[k]];
+			a[t] = flash;
+			flash = hold;
+			++nmove;
+		}
+	}
+	int key;
+	for (int i = 1; ++count_comp && i < n; i++)
+	{
+		key = a[i];
+		j = i - 1;
+
+		while ((++count_comp && j >= 0) && (++count_comp && a[j] > key))
+		{
+			a[j + 1] = a[j];
+			j = j - 1;
+		}
+		a[j + 1] = key;
+	}
+}
+

@@ -39,5 +39,11 @@ void shellSort_countComp(int arr[], int n,unsigned long long int& count_comp);
 
 
 
-void radixSort(int* a, int n);
-void radixSort_comp(int* a, int n, unsigned long long int& count_comp);
+int getMax(int array[], int n);
+void countSort(int array[], int size, int place);
+void radixSort(int array[], int size);
+int getMax_countComp(int array[], int n, unsigned long long int& count_comp);
+void countSort_countComp(int array[], int size, int place, unsigned long long int& count_comp);
+void radixSort_countComp(int array[], int size, unsigned long long int& count_comp);
+void flashSort(int a[], int n);
+void flashSort_countComp(int a[], int n, unsigned long long int& count_comp);

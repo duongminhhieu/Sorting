@@ -21,7 +21,7 @@ void convert(int* a, int size, int* b) {
     }
 }
 
-int main() {
+/*int main() {
     double time;
     unsigned long long int count_comp = 0;
     int x = 2; // data order
@@ -161,6 +161,12 @@ int main() {
 
 
     cout << endl << endl;
+    system("pause");
+}*/
+
+int main(int argc, char* argv[])
+{
+    chooseCommandType(argc, argv);
     system("pause");
 }
 

@@ -3,7 +3,7 @@
 #include"DataGenerator.h"
 
 string Mode[2] = { "-a","-c" };
-string Algorithm_name[10] = { "selection-sort","insertion-sort","bubble sort","heap-sort","merge-sort","quick-sort","radix-sort","shaker-sort","shell-sort","counting-sort" };
+string Algorithm_name[11] = { "selection-sort","insertion-sort","bubble sort","heap-sort","merge-sort","quick-sort","radix-sort","shaker-sort","shell-sort","counting-sort", "flash-sort"};
 string Input_order[4] = { "-rand","-sorted","-rev" ,"-nsorted" };
 string Input_order2[4] = { "randomize","sorted","reverse sorted"," nearly sorted" };
 string Output_parameters[3] = { "-time","-comp","-both" };
@@ -74,6 +74,27 @@ bool writeArrayToFile(string filename,int*a,int n)
 	}
 	ofs.close();
 	return true;
+}
+
+void writeArrayToFile_Command3(int* a, int n, int i) //for Command 3
+{
+	switch (i)
+	{
+	case 0:
+		writeArrayToFile("input_1.txt", a, n); //random data
+		break;
+	case 1:
+		writeArrayToFile("input_3.txt", a, n); //sorted data
+		break;
+	case 2:
+		writeArrayToFile("input_4.txt", a, n); //reversed
+		break;
+	case 3:
+		writeArrayToFile("input_2.txt", a, n); //nearly sorted
+		break;
+	default:
+		return;
+	}
 }
 
 bool chooseCommandType(int argc, char* argv[])
@@ -469,6 +490,9 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
@@ -488,6 +512,9 @@ bool Command_3(char* argv[])
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
 
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
+
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			insertionSort(a, size);
@@ -505,6 +532,9 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
@@ -524,6 +554,9 @@ bool Command_3(char* argv[])
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
 
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
+
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			heapSort(a, size);
@@ -541,6 +574,9 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
@@ -560,6 +596,9 @@ bool Command_3(char* argv[])
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
 
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
+
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			quickSort(a, 0, size - 1);
@@ -577,6 +616,9 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
@@ -596,6 +638,9 @@ bool Command_3(char* argv[])
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
 
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
+
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			shakerSort(a, size);
@@ -613,6 +658,9 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
@@ -632,6 +680,9 @@ bool Command_3(char* argv[])
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
 
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
+
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			countingSort(a, size);
@@ -641,6 +692,27 @@ bool Command_3(char* argv[])
 
 			count_comp[i] = 0;
 			countingSort_CountComp(a, size, count_comp[i]);
+		}
+		break;
+
+	case 10:
+		for (int i = 0; i < 4; i++)
+		{
+			//tao Data Order voi Data Size = size
+			GenerateData(a, size, i);
+
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
+
+			//tinh Run Time va Comparision cua Algorithm
+			start = clock();
+			flashSort(a, size);
+			end = clock();
+			runtime[i] = (double)(end - start) / CLOCKS_PER_SEC;
+			runtime[i] *= 1000;
+
+			count_comp[i] = 0;
+			flashSort_countComp(a, size, count_comp[i]);
 		}
 		break;
 

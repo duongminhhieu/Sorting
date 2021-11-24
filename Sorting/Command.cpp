@@ -272,6 +272,17 @@ bool Command_1(char* argv[])
 		count_comp = 0;
 		countingSort_CountComp(a, n, count_comp);
 		break;
+
+	case 10:
+		start = clock();
+		flashSort(a, n);
+		end = clock();
+		runtime = (double)(end - start) / CLOCKS_PER_SEC;
+		runtime = runtime * 1000;
+		count_comp = 0;
+		flashSort_countComp(a, n, count_comp);
+		break;
+
 	default:
 		break;
 	}
@@ -425,6 +436,17 @@ bool Command_2(char* argv[])
 		count_comp = 0;
 		countingSort_CountComp(a, n, count_comp);
 		break;
+
+	case 10:
+		start = clock();
+		flashSort(a, n);
+		end = clock();
+		runtime = (double)(end - start) / CLOCKS_PER_SEC;
+		runtime = runtime * 1000;
+		count_comp = 0;
+		flashSort_countComp(a, n, count_comp);
+		break;
+
 	default:
 		break;
 	}

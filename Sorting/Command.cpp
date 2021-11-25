@@ -3,7 +3,7 @@
 #include"DataGenerator.h"
 
 string Mode[2] = { "-a","-c" };
-string Algorithm_name[11] = { "selection-sort","insertion-sort","bubble sort","heap-sort","merge-sort","quick-sort","radix-sort","shaker-sort","shell-sort","counting-sort","flash-sort"};
+string Algorithm_name[11] = { "selection-sort","insertion-sort","bubble-sort","heap-sort","merge-sort","quick-sort","radix-sort","shaker-sort","shell-sort","counting-sort","flash-sort"};
 string Input_order[4] = { "-rand","-sorted","-rev" ,"-nsorted" };
 string Input_order2[4] = { "randomize","sorted","reverse sorted"," nearly sorted" };
 string Output_parameters[3] = { "-time","-comp","-both" };
@@ -13,7 +13,7 @@ bool isNumber(string s)
 {
 	for (int i = 0; i < s.length(); i++)
 	{
-		if (s[i] < '0' || s[i]>9)
+		if (s[i] < '0' || s[i]>'9')
 		{
 			return false;
 		}
@@ -33,7 +33,7 @@ int isMode(string mode)
 }
 int isAlgorithm_name(string algorithm)
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 11; i++)
 	{
 		if (algorithm == Algorithm_name[i])
 		{
@@ -75,13 +75,33 @@ bool writeArrayToFile(string filename,int*a,int n)
 	ofs.close();
 	return true;
 }
+void writeArrayToFile_Command3(int* a, int n, int i) //for Command 3
+{
+	switch (i)
+	{
+	case 0:
+		writeArrayToFile("input_1.txt", a, n); //random data
+		break;
+	case 1:
+		writeArrayToFile("input_3.txt", a, n); //sorted data
+		break;
+	case 2:
+		writeArrayToFile("input_4.txt", a, n); //reversed
+		break;
+	case 3:
+		writeArrayToFile("input_2.txt", a, n); //nearly sorted
+		break;
+	default:
+		return;
+	}
+}
 
 bool chooseCommandType(int argc, char* argv[])
 {
 	int mode = isMode(argv[1]);
 	if (mode == -1)
 	{
-		cout << "Lenh khong hop le" << endl;
+		cout << "Lenh khong hop le " << endl;
 		return false;
 	}
 	if (mode == 0)// mod thuat toan
@@ -496,6 +516,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -518,6 +540,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -540,6 +564,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -562,6 +588,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -584,6 +612,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -606,6 +636,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -628,6 +660,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -650,6 +684,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -672,6 +708,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -694,6 +732,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -715,6 +755,8 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
+			//xuat file .txt chua mang vua tao
+			writeArrayToFile_Command3(a, size, i);
 			int* b = new int[size];// mang sao chep cua mang a
 			for (int i = 0; i < size; i++)
 			{
@@ -784,14 +826,14 @@ bool Command_4(char* argv[])
 	int n = 0;
 	ifs >> n;
 	int* a = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		ifs >> a[i];
+	}
 	int* b = new int[n];// mang sao chep cua mang a
 	for (int i = 0; i < n; i++)
 	{
 		b[i] = a[i];
-	}
-	for (int i = 0; i < n; i++)
-	{
-		ifs >> a[i];
 	}
 	ifs.close();
 	cout << "ALGORITHM MODE" << endl;
@@ -1140,8 +1182,8 @@ bool Command_4(char* argv[])
 	default:
 		break;
 	}
-	cout << "Running time: " << runtime1 << " | " << runtime2;
-	cout << "Comparisions: " << count_comp1 << " | " << count_comp2;
+	cout << "Running time: " << runtime1 << " | " << runtime2<<endl;
+	cout << "Comparisions: " << count_comp1 << " | " << count_comp2<<endl;
 }
 bool Command_5(char* argv[])
 {
@@ -1165,12 +1207,12 @@ bool Command_5(char* argv[])
 	}
 	int n = stoi(argv[4]);
 	int* a = new int[n];
+	GenerateData(a, n, inputoder);
 	int* b = new int[n];// mang sao chep cua mang a
 	for (int i = 0; i < n; i++)
 	{
 		b[i] = a[i];
 	}
-	GenerateData(a, n, inputoder);
 	writeArrayToFile("input.txt", a, n);
 	cout << "ALGORITHM MODE" << endl;
 	cout << "Algorithm: " << Algorithm_name[algorithm1] << " | " << Algorithm_name[algorithm2] << endl;
@@ -1518,7 +1560,7 @@ bool Command_5(char* argv[])
 	default:
 		break;
 	}
-	cout << "Running time: " << runtime1 << " | " << runtime2;
-	cout << "Comparisions: " << count_comp1 << " | " << count_comp2;
+	cout << "Running time: " << runtime1 << " | " << runtime2<<endl;
+	cout << "Comparisions: " << count_comp1 << " | " << count_comp2<<endl;
 	writeArrayToFile("output.txt", b, n);
 }

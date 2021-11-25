@@ -1,14 +1,1 @@
-﻿  Command.cpp
-  DataGenerator.cpp
-  main.cpp
-  Sorting.cpp
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Sorting.cpp(13,16): warning C4018: '<': signed/unsigned mismatch
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Sorting.cpp(17,21): warning C4018: '<': signed/unsigned mismatch
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Sorting.cpp(235,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Sorting.cpp(306,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Command.cpp(295): warning C4715: 'Command_1': not all control paths return a value
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Command.cpp(137): warning C4715: 'chooseCommandType': not all control paths return a value
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Command.cpp(448): warning C4715: 'Command_2': not all control paths return a value
-D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\Sorting\Command.cpp(744): warning C4715: 'Command_3': not all control paths return a value
-  Sorting.vcxproj -> D:\[User] Bi\ĐH KHTN\Năm 2 - Học kỳ 1\DSA (TH)\DSA (Lab)_Lab03 - GitHub\x64\Debug\Sorting.exe
+﻿  Sorting.vcxproj -> D:\Study\Tailieu\CTDL\BTTH\New folder\Sorting\x64\Debug\Sorting.exe

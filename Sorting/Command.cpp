@@ -3,7 +3,7 @@
 #include"DataGenerator.h"
 
 string Mode[2] = { "-a","-c" };
-string Algorithm_name[11] = { "selection-sort","insertion-sort","bubble sort","heap-sort","merge-sort","quick-sort","radix-sort","shaker-sort","shell-sort","counting-sort", "flash-sort"};
+string Algorithm_name[11] = { "selection-sort","insertion-sort","bubble sort","heap-sort","merge-sort","quick-sort","radix-sort","shaker-sort","shell-sort","counting-sort","flash-sort"};
 string Input_order[4] = { "-rand","-sorted","-rev" ,"-nsorted" };
 string Input_order2[4] = { "randomize","sorted","reverse sorted"," nearly sorted" };
 string Output_parameters[3] = { "-time","-comp","-both" };
@@ -76,27 +76,6 @@ bool writeArrayToFile(string filename,int*a,int n)
 	return true;
 }
 
-void writeArrayToFile_Command3(int* a, int n, int i) //for Command 3
-{
-	switch (i)
-	{
-	case 0:
-		writeArrayToFile("input_1.txt", a, n); //random data
-		break;
-	case 1:
-		writeArrayToFile("input_3.txt", a, n); //sorted data
-		break;
-	case 2:
-		writeArrayToFile("input_4.txt", a, n); //reversed
-		break;
-	case 3:
-		writeArrayToFile("input_2.txt", a, n); //nearly sorted
-		break;
-	default:
-		return;
-	}
-}
-
 bool chooseCommandType(int argc, char* argv[])
 {
 	int mode = isMode(argv[1]);
@@ -115,7 +94,7 @@ bool chooseCommandType(int argc, char* argv[])
 		{
 			if (isNumber(argv[3]))
 			{
-				//Command_3(argv);
+				Command_3(argv);
 			}
 			else
 			{
@@ -127,11 +106,11 @@ bool chooseCommandType(int argc, char* argv[])
 	{
 		if (argc == 5)
 		{
-			//Command_4(argv);
+			Command_4(argv);
 		}
 		else
 		{
-			//Command_5(argv);
+			Command_5(argv);
 		}
 	}
 }
@@ -163,6 +142,11 @@ bool Command_1(char* argv[])
 	{
 		ifs >> a[i];
 	}
+	int* b = new int[n];// mang sao chep cua mang 2
+	for (int i = 0; i < n; i++)
+	{
+		b[i] = a[i];
+	}
 	ifs.close();
 	cout << "ALGORITHM MODE" << endl;
 	cout << "Algorithm: " << Algorithm_name[algorithm] << endl;
@@ -181,7 +165,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		selectionSort_countComp(a, n, count_comp);
+		selectionSort_countComp(b, n, count_comp);
 		break;
 
 	case 1:
@@ -191,7 +175,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		insertionSort_countComp(a, n, count_comp);
+		insertionSort_countComp(b, n, count_comp);
 		break;
 
 	case 2:
@@ -201,7 +185,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		bubbleSortCountcomp(a, n, count_comp);
+		bubbleSortCountcomp(b, n, count_comp);
 		break;
 	case 3:
 		start = clock();
@@ -210,7 +194,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		heapSort_CountComp(a, n, count_comp);
+		heapSort_CountComp(b, n, count_comp);
 		break;
 
 	case 4:
@@ -220,7 +204,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		mergeSort_countComp(a,0, n-1, count_comp);
+		mergeSort_countComp(b,0, n-1, count_comp);
 		break;
 
 	case 5:
@@ -230,7 +214,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		quickSortCountcomp(a,0,n-1, count_comp);
+		quickSortCountcomp(b,0,n-1, count_comp);
 		break;
 
 	case 6:
@@ -240,7 +224,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		radixSort_countComp(a, n, count_comp);
+		radixSort_countComp(b, n, count_comp);
 		break;
 
 	case 7:
@@ -250,7 +234,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		shakerSortCountcomp(a, n, count_comp);
+		shakerSortCountcomp(b, n, count_comp);
 		break;
 
 	case 8:
@@ -260,7 +244,7 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		shellSort_countComp(a, n, count_comp);
+		shellSort_countComp(b, n, count_comp);
 		break;
 
 	case 9:
@@ -270,9 +254,8 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		countingSort_CountComp(a, n, count_comp);
+		countingSort_CountComp(b, n, count_comp);
 		break;
-
 	case 10:
 		start = clock();
 		flashSort(a, n);
@@ -280,9 +263,8 @@ bool Command_1(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		flashSort_countComp(a, n, count_comp);
+		flashSort_countComp(b, n, count_comp);
 		break;
-
 	default:
 		break;
 	}
@@ -327,6 +309,11 @@ bool Command_2(char* argv[])
 	int n = stoi(argv[3]);
 	int* a = new int[n];
 	GenerateData(a, n, inputoder);
+	int* b = new int[n];// mang sao chep cua mang 2
+	for (int i = 0; i < n; i++)
+	{
+		b[i] = a[i];
+	}
 	writeArrayToFile("input.txt",a,n);
 	cout << "ALGORITHM MODE" << endl;
 	cout << "Algorithm: " << Algorithm_name[algorithm] << endl;
@@ -345,7 +332,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		selectionSort_countComp(a, n, count_comp);
+		selectionSort_countComp(b, n, count_comp);
 		break;
 
 	case 1:
@@ -355,7 +342,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		insertionSort_countComp(a, n, count_comp);
+		insertionSort_countComp(b, n, count_comp);
 		break;
 
 	case 2:
@@ -365,7 +352,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		bubbleSortCountcomp(a, n, count_comp);
+		bubbleSortCountcomp(b, n, count_comp);
 		break;
 	case 3:
 		start = clock();
@@ -374,7 +361,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		heapSort_CountComp(a, n, count_comp);
+		heapSort_CountComp(b, n, count_comp);
 		break;
 
 	case 4:
@@ -384,7 +371,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		mergeSort_countComp(a, 0, n - 1, count_comp);
+		mergeSort_countComp(b, 0, n - 1, count_comp);
 		break;
 
 	case 5:
@@ -394,7 +381,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		quickSortCountcomp(a, 0, n - 1, count_comp);
+		quickSortCountcomp(b, 0, n - 1, count_comp);
 		break;
 
 	case 6:
@@ -404,7 +391,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		radixSort_countComp(a, n, count_comp);
+		radixSort_countComp(b, n, count_comp);
 		break;
 
 	case 7:
@@ -414,7 +401,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		shakerSortCountcomp(a, n, count_comp);
+		shakerSortCountcomp(b, n, count_comp);
 		break;
 
 	case 8:
@@ -424,7 +411,7 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		shellSort_countComp(a, n, count_comp);
+		shellSort_countComp(b, n, count_comp);
 		break;
 
 	case 9:
@@ -434,9 +421,8 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		countingSort_CountComp(a, n, count_comp);
+		countingSort_CountComp(b, n, count_comp);
 		break;
-
 	case 10:
 		start = clock();
 		flashSort(a, n);
@@ -444,9 +430,8 @@ bool Command_2(char* argv[])
 		runtime = (double)(end - start) / CLOCKS_PER_SEC;
 		runtime = runtime * 1000;
 		count_comp = 0;
-		flashSort_countComp(a, n, count_comp);
+		flashSort_countComp(b, n, count_comp);
 		break;
-
 	default:
 		break;
 	}
@@ -468,7 +453,6 @@ bool Command_2(char* argv[])
 	writeArrayToFile("output.txt", a, n);
 
 }
-
 bool Command_3(char* argv[])
 {
 	int algorithm = isAlgorithm_name(argv[2]);
@@ -512,10 +496,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-			
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			selectionSort(a, size);
@@ -524,7 +509,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			selectionSort_countComp(a, size, count_comp[i]);
+			selectionSort_countComp(b, size, count_comp[i]);
 		}
 		break;
 
@@ -533,10 +518,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			insertionSort(a, size);
@@ -545,7 +531,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			insertionSort_countComp(a, size, count_comp[i]);
+			insertionSort_countComp(b, size, count_comp[i]);
 		}
 		break;
 
@@ -554,10 +540,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			bubbleSort(a, size);
@@ -566,7 +553,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			bubbleSortCountcomp(a, size, count_comp[i]);
+			bubbleSortCountcomp(b, size, count_comp[i]);
 		}
 		break;
 
@@ -575,10 +562,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			heapSort(a, size);
@@ -587,7 +575,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			heapSort_CountComp(a, size, count_comp[i]);
+			heapSort_CountComp(b, size, count_comp[i]);
 		}
 		break;
 
@@ -596,10 +584,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			mergeSort(a, 0, size - 1);
@@ -608,7 +597,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			mergeSort_countComp(a, 0, size - 1, count_comp[i]);
+			mergeSort_countComp(b, 0, size - 1, count_comp[i]);
 		}
 		break;
 
@@ -617,10 +606,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			quickSort(a, 0, size - 1);
@@ -629,7 +619,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			quickSortCountcomp(a, 0, size - 1, count_comp[i]);
+			quickSortCountcomp(b, 0, size - 1, count_comp[i]);
 		}
 		break;
 
@@ -638,10 +628,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			radixSort(a, size);
@@ -650,7 +641,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			radixSort_countComp(a, size, count_comp[i]);
+			radixSort_countComp(b, size, count_comp[i]);
 		}
 		break;
 
@@ -659,10 +650,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			shakerSort(a, size);
@@ -671,7 +663,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			shakerSortCountcomp(a, size, count_comp[i]);
+			shakerSortCountcomp(b, size, count_comp[i]);
 		}
 		break;
 
@@ -680,10 +672,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			shellSort(a, size);
@@ -692,7 +685,7 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			shellSort_countComp(a, size, count_comp[i]);
+			shellSort_countComp(b, size, count_comp[i]);
 		}
 		break;
 
@@ -701,10 +694,11 @@ bool Command_3(char* argv[])
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			countingSort(a, size);
@@ -713,19 +707,19 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			countingSort_CountComp(a, size, count_comp[i]);
+			countingSort_CountComp(b, size, count_comp[i]);
 		}
 		break;
-
 	case 10:
 		for (int i = 0; i < 4; i++)
 		{
 			//tao Data Order voi Data Size = size
 			GenerateData(a, size, i);
-
-			//xuat file .txt chua mang vua tao
-			writeArrayToFile_Command3(a, size, i);
-
+			int* b = new int[size];// mang sao chep cua mang a
+			for (int i = 0; i < size; i++)
+			{
+				b[i] = a[i];
+			}
 			//tinh Run Time va Comparision cua Algorithm
 			start = clock();
 			flashSort(a, size);
@@ -734,9 +728,11 @@ bool Command_3(char* argv[])
 			runtime[i] *= 1000;
 
 			count_comp[i] = 0;
-			flashSort_countComp(a, size, count_comp[i]);
+			flashSort_countComp(b, size, count_comp[i]);
 		}
 		break;
+
+
 
 	default:
 		break;
@@ -763,4 +759,766 @@ bool Command_3(char* argv[])
 		}
 		cout << endl;
 	}
+}
+bool Command_4(char* argv[])
+{
+	int algorithm1 = isAlgorithm_name(argv[2]);
+	if (algorithm1 == -1)
+	{
+		cout << "Lenh khong hop le" << endl;
+		return false;
+	}
+	int algorithm2 = isAlgorithm_name(argv[3]);
+	if (algorithm2 == -1)
+	{
+		cout << "Lenh khong hop le" << endl;
+		return false;
+	}
+	string filename = argv[4];
+	ifstream ifs(filename);
+	if (!ifs.is_open())
+	{
+		cout << "Khong the mo file" << endl;
+		return false;
+	}
+	int n = 0;
+	ifs >> n;
+	int* a = new int[n];
+	int* b = new int[n];// mang sao chep cua mang a
+	for (int i = 0; i < n; i++)
+	{
+		b[i] = a[i];
+	}
+	for (int i = 0; i < n; i++)
+	{
+		ifs >> a[i];
+	}
+	ifs.close();
+	cout << "ALGORITHM MODE" << endl;
+	cout << "Algorithm: " << Algorithm_name[algorithm1] <<" | " << Algorithm_name[algorithm2] << endl;
+	cout << "Input file: " << filename << endl;
+	cout << "Input size: " << n << endl;
+	cout << "-------------------------------" << endl;
+	double runtime1,runtime2;
+	unsigned long long int count_comp1 = 0, count_comp2 = 0;
+	clock_t start1, end1,start2,end2;
+
+	switch (algorithm1)
+	{
+	case 0:
+		start1 = clock();
+		selectionSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		selectionSort_countComp(b, n, count_comp1);
+		break;
+
+	case 1:
+		start1 = clock();
+		insertionSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		insertionSort_countComp(b, n, count_comp1);
+		break;
+
+	case 2:
+		start1 = clock();
+		bubbleSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		bubbleSortCountcomp(b, n, count_comp1);
+		break;
+	case 3:
+		start1 = clock();
+		heapSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		heapSort_CountComp(b, n, count_comp1);
+		break;
+
+	case 4:
+		start1 = clock();
+		mergeSort(b, 0, n - 1);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		mergeSort_countComp(b, 0, n - 1, count_comp1);
+		break;
+
+	case 5:
+		start1 = clock();
+		quickSort(b, 0, n - 1);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		quickSortCountcomp(b, 0, n - 1, count_comp1);
+		break;
+
+	case 6:
+		start1 = clock();
+		radixSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		radixSort_countComp(b, n, count_comp1);
+		break;
+
+	case 7:
+		start1 = clock();
+		shakerSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		shakerSortCountcomp(b, n, count_comp1);
+		break;
+
+	case 8:
+		start1 = clock();
+		shellSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		shellSort_countComp(b, n, count_comp1);
+		break;
+
+	case 9:
+		start1 = clock();
+		countingSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		countingSort_CountComp(b, n, count_comp1);
+		break;
+	case 10:
+		start1 = clock();
+		flashSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		flashSort_countComp(b, n, count_comp1);
+		break;
+	default:
+		break;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		b[i] = a[i];
+	}
+	switch (algorithm2)
+	{
+	case 0:
+		start2 = clock();
+		selectionSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		selectionSort_countComp(b, n, count_comp2);
+		break;
+
+	case 1:
+		start2 = clock();
+		insertionSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		insertionSort_countComp(b, n, count_comp2);
+		break;
+
+	case 2:
+		start2 = clock();
+		bubbleSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		bubbleSortCountcomp(b, n, count_comp2);
+		break;
+	case 3:
+		start2 = clock();
+		heapSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		heapSort_CountComp(b, n, count_comp2);
+		break;
+
+	case 4:
+		start2 = clock();
+		mergeSort(b, 0, n - 1);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		mergeSort_countComp(b, 0, n - 1, count_comp2);
+		break;
+
+	case 5:
+		start2 = clock();
+		quickSort(b, 0, n - 1);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		quickSortCountcomp(b, 0, n - 1, count_comp2);
+		break;
+
+	case 6:
+		start2 = clock();
+		radixSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		radixSort_countComp(b, n, count_comp2);
+		break;
+
+	case 7:
+		start2 = clock();
+		shakerSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		shakerSortCountcomp(b, n, count_comp2);
+		break;
+
+	case 8:
+		start2 = clock();
+		shellSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		shellSort_countComp(b, n, count_comp2);
+		break;
+
+	case 9:
+		start2 = clock();
+		countingSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		countingSort_CountComp(b, n, count_comp2);
+		break;
+	case 10:
+		start2 = clock();
+		flashSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		flashSort_countComp(b, n, count_comp2);
+		break;
+	default:
+		break;
+	}
+	cout << "Running time: " << runtime1 << " | " << runtime2;
+	cout << "Comparisions: " << count_comp1 << " | " << count_comp2;
+}
+bool Command_5(char* argv[])
+{
+	int algorithm1 = isAlgorithm_name(argv[2]);
+	if (algorithm1 == -1)
+	{
+		cout << "Lenh khong hop le" << endl;
+		return false;
+	}
+	int algorithm2 = isAlgorithm_name(argv[3]);
+	if (algorithm2 == -1)
+	{
+		cout << "Lenh khong hop le" << endl;
+		return false;
+	}
+	int inputoder = isInput_order(argv[5]);
+	if (inputoder == -1)
+	{
+		cout << "Lenh khong hop le" << endl;
+		return false;
+	}
+	int n = stoi(argv[4]);
+	int* a = new int[n];
+	int* b = new int[n];// mang sao chep cua mang a
+	for (int i = 0; i < n; i++)
+	{
+		b[i] = a[i];
+	}
+	GenerateData(a, n, inputoder);
+	writeArrayToFile("input.txt", a, n);
+	cout << "ALGORITHM MODE" << endl;
+	cout << "Algorithm: " << Algorithm_name[algorithm1] << " | " << Algorithm_name[algorithm2] << endl;
+	cout << "Input size: " << n << endl;
+	cout << "Input order: " << Input_order2[inputoder] << endl;
+	cout << "-------------------------------" << endl;
+	double runtime1, runtime2;
+	unsigned long long int count_comp1 = 0, count_comp2 = 0;
+	clock_t start1, end1, start2, end2;
+	switch (algorithm1)
+	{
+	case 0:
+		start1 = clock();
+		selectionSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		selectionSort_countComp(b, n, count_comp1);
+		break;
+
+	case 1:
+		start1 = clock();
+		insertionSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		insertionSort_countComp(b, n, count_comp1);
+		break;
+
+	case 2:
+		start1 = clock();
+		bubbleSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		bubbleSortCountcomp(b, n, count_comp1);
+		break;
+	case 3:
+		start1 = clock();
+		heapSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		heapSort_CountComp(b, n, count_comp1);
+		break;
+
+	case 4:
+		start1 = clock();
+		mergeSort(b, 0, n - 1);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		mergeSort_countComp(b, 0, n - 1, count_comp1);
+		break;
+
+	case 5:
+		start1 = clock();
+		quickSort(b, 0, n - 1);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		quickSortCountcomp(b, 0, n - 1, count_comp1);
+		break;
+
+	case 6:
+		start1 = clock();
+		radixSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		radixSort_countComp(b, n, count_comp1);
+		break;
+
+	case 7:
+		start1 = clock();
+		shakerSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		shakerSortCountcomp(b, n, count_comp1);
+		break;
+
+	case 8:
+		start1 = clock();
+		shellSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		shellSort_countComp(b, n, count_comp1);
+		break;
+
+	case 9:
+		start1 = clock();
+		countingSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		count_comp1 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		countingSort_CountComp(b, n, count_comp1);
+		break;
+	case 10:
+		start1 = clock();
+		flashSort(b, n);
+		end1 = clock();
+		runtime1 = (double)(end1 - start1) / CLOCKS_PER_SEC;
+		runtime1 = runtime1 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp1 = 0;
+		flashSort_countComp(b, n, count_comp1);
+		break;
+	default:
+		break;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		b[i] = a[i];
+	}
+	switch (algorithm2)
+	{
+	case 0:
+		start2 = clock();
+		selectionSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		selectionSort_countComp(b, n, count_comp2);
+		break;
+
+	case 1:
+		start2 = clock();
+		insertionSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		insertionSort_countComp(b, n, count_comp2);
+		break;
+
+	case 2:
+		start2 = clock();
+		bubbleSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		bubbleSortCountcomp(b, n, count_comp2);
+		break;
+	case 3:
+		start2 = clock();
+		heapSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		heapSort_CountComp(b, n, count_comp2);
+		break;
+
+	case 4:
+		start2 = clock();
+		mergeSort(b, 0, n - 1);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		mergeSort_countComp(b, 0, n - 1, count_comp2);
+		break;
+
+	case 5:
+		start2 = clock();
+		quickSort(b, 0, n - 1);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		quickSortCountcomp(b, 0, n - 1, count_comp2);
+		break;
+
+	case 6:
+		start2 = clock();
+		radixSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		radixSort_countComp(b, n, count_comp2);
+		break;
+
+	case 7:
+		start2 = clock();
+		shakerSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		shakerSortCountcomp(b, n, count_comp2);
+		break;
+
+	case 8:
+		start2 = clock();
+		shellSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		shellSort_countComp(b, n, count_comp2);
+		break;
+
+	case 9:
+		start2 = clock();
+		countingSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		count_comp2 = 0;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		countingSort_CountComp(b, n, count_comp2);
+		break;
+	case 10:
+		start2 = clock();
+		flashSort(b, n);
+		end2 = clock();
+		runtime2 = (double)(end2 - start2) / CLOCKS_PER_SEC;
+		runtime2 = runtime2 * 1000;
+		// mang sao chep cua mang a
+		for (int i = 0; i < n; i++)
+		{
+			b[i] = a[i];
+		}
+		count_comp2 = 0;
+		flashSort_countComp(b, n, count_comp2);
+		break;
+	default:
+		break;
+	}
+	cout << "Running time: " << runtime1 << " | " << runtime2;
+	cout << "Comparisions: " << count_comp1 << " | " << count_comp2;
+	writeArrayToFile("output.txt", b, n);
 }

@@ -12,3 +12,6 @@ Sinh viên thực hiện:
 2. Võ Minh Hiếu
 3. Nguyễn Minh Hiếu
 4. Nguyễn Văn Hào 
+
+Trong **Source Code**  gồm **Set 11** thuật toán: Selection Sort, Insertion Sort, Heap Sort, Merge Sort, Quick Sort, Bubble sort, Shaker Sort, Shell Sort, Counting Sort, Flash Sort, Radix Sort
+
